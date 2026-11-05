@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Selector Gamer Roblox</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Fredoka:wght@500;600;700&display=swap');
+
+  :root{--chroma:#00ff00;--text:#ffffff;--pink:#FF0054;--cyan:#00F5D4;--violet:#3A86FF;}
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{display:grid;place-items:center;background:var(--chroma);font-family:'Fredoka',system-ui,sans-serif;overflow:hidden;}
+  /* The outside stays pure chroma. All lighting is contained inside opaque panels. */
+  .app{width:min(96vmin,760px);aspect-ratio:1;display:grid;grid-template-rows:13% minmax(0,1fr);gap:2.5%;padding:14px;background:var(--chroma);container-type:inline-size;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:0 3cqw;border:2px solid #1A1A1A;border-radius:2.4cqw;background:linear-gradient(110deg,#FFBD00,#FFBD00);box-shadow:inset 0 1px #ffffff,inset 0 -5px #1A1A1A;position:relative;}
+  .brand{display:flex;align-items:center;gap:2cqw;margin:0;color:var(--text);font-family:'Baloo 2',system-ui,sans-serif;font-size:4.1cqw;font-weight:800;line-height:1;letter-spacing:-.06cqw;}
+  .brand::before{content:'';display:block;flex:none;width:3.3cqw;height:3.3cqw;border:1cqw solid var(--pink);transform:rotate(-16deg);box-shadow:2px 2px 0 #1A1A1A;}
+  .lang-btn{appearance:none;flex:none;position:relative;min-width:21cqw;padding:1.6cqw 5cqw 1.6cqw 2cqw;border:1px solid #1A1A1A;border-radius:5cqw;background:#1A1A1A;color:#fff;font:600 2.6cqw 'Fredoka',system-ui,sans-serif;cursor:pointer;box-shadow:inset 0 1px #1A1A1A;transition:background .15s,transform .1s;}
+  .lang-btn::after{content:'';position:absolute;right:1.7cqw;top:50%;width:1.8cqw;height:1.8cqw;margin-top:-.9cqw;background:var(--pink);border-radius:50%;box-shadow:0 0 0 .5cqw #ffffff;}
+  .lang-btn:hover{background:#3A86FF}
+  .lang-btn:active{transform:translateY(2px)}
+  .stage{display:flex;min-height:0;}
+  .game-card{width:100%;min-height:0;position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding:7.2cqw 4cqw 2.3cqw;border:2px solid #1A1A1A;border-radius:3.8cqw;background:radial-gradient(ellipse at 3% 0%,#3A86FF 0%,transparent 47%),radial-gradient(ellipse at 100% 100%,#3A86FF 0%,transparent 48%),linear-gradient(145deg,#3A86FF,#3A86FF 65%);box-shadow:inset 0 2px #ffffff,inset 0 -7px #1A1A1A,inset 0 0 0 6px #3A86FF;}
+  .labels,.controls,.values{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:1.8cqw;align-items:center;}
+  .labels{margin-bottom:1.7cqw;}
+  .label{text-align:center;color:#ffffff;font-size:3cqw;font-weight:600;letter-spacing:.5cqw;line-height:1.1;text-transform:uppercase;}
+  .controls.top{margin-bottom:2cqw;}
+  .controls.bottom{margin-top:2cqw;margin-bottom:3.3cqw;}
+  .value-box{height:18cqw;min-width:0;display:flex;align-items:center;justify-content:center;padding:.5cqw;border:2px solid #1A1A1A;border-radius:2cqw;background:linear-gradient(#ffffff,#ffffff);color:#fff;font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:9.3cqw;line-height:1;letter-spacing:-.3cqw;text-transform:uppercase;font-variant-numeric:tabular-nums;user-select:none;box-shadow:inset 0 4px 8px #ffffff,inset 0 -3px #ffffff;text-shadow:0 3px #ffffff;}
+  .value-box:first-child{border-color:#1A1A1A;color:#FF0054;}
+  .month-value{font-size:4.35cqw;letter-spacing:0;color:#1A1A1A;border-color:#1A1A1A;background:linear-gradient(#FFBD00,#FFBD00);}
+  .value-box:last-child{border-color:#1A1A1A;color:#3A86FF;}
+  .arcade-btn{appearance:none;-webkit-appearance:none;position:relative;justify-self:center;width:10.5cqw;height:8.2cqw;cursor:pointer;border:2px solid #1A1A1A;border-radius:1.7cqw;background:linear-gradient(#FFBD00,#FFBD00);box-shadow:0 4px 0 #1A1A1A,inset 0 2px #ffffff,inset 0 -3px #FFBD00;transition:transform .1s,filter .15s;}
+  .arcade-btn:nth-child(1){border-color:#1A1A1A;background:linear-gradient(#FF0054,#FF0054);}
+  .arcade-btn:nth-child(3){border-color:#1A1A1A;background:linear-gradient(#00F5D4,#00F5D4);}
+  .arcade-btn:hover{filter:brightness(1.18)}
+  .arcade-btn:active{transform:translateY(3px);box-shadow:0 1px #1A1A1A,inset 0 2px #ffffff;}
+  .arrow{position:absolute;left:50%;top:50%;width:2.4cqw;height:2.4cqw;border-top:.65cqw solid #fff;border-left:.65cqw solid #fff;filter:drop-shadow(0 2px #1A1A1A);}
+  .up .arrow{transform:translate(-50%,-25%) rotate(45deg)}
+  .down .arrow{transform:translate(-50%,-75%) rotate(225deg)}
+  .ok-btn{flex:none;position:relative;width:100%;height:11.7cqw;cursor:pointer;border:2px solid #1A1A1A;border-radius:1.8cqw;background:linear-gradient(110deg,#00F5D4,#00F5D4 58%,#00F5D4);color:#1A1A1A;font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;font-size:6cqw;line-height:1;letter-spacing:.15cqw;box-shadow:0 5px #1A1A1A,inset 0 2px #ffffff,inset 0 -4px #00F5D4;transition:transform .1s,filter .15s;}
+  .ok-btn::before,.ok-btn::after{content:'';position:absolute;top:50%;width:2.4cqw;height:2.4cqw;margin-top:-1.2cqw;background:#1A1A1A;clip-path:polygon(50% 0,63% 37%,100% 50%,63% 63%,50% 100%,37% 63%,0 50%,37% 37%);}
+  .ok-btn::before{left:6cqw}.ok-btn::after{right:6cqw}
+  .ok-btn:hover{filter:brightness(1.1)}
+  .ok-btn:active{transform:translateY(3px);box-shadow:0 2px #1A1A1A,inset 0 2px #ffffff,inset 0 -2px #00F5D4;}
+  button:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+  .result{min-height:5cqw;margin-top:2cqw;display:flex;align-items:center;justify-content:center;text-align:center;color:#ffffff;font-family:'Fredoka',system-ui,sans-serif;font-size:2.5cqw;font-weight:500;line-height:1.25;}
+  @media(max-width:560px){.app{padding:8px;width:min(100vw,96vmin)}.topbar{border-radius:2.8cqw}.game-card{border-radius:4cqw;box-shadow:inset 0 1px #ffffff,inset 0 -4px #1A1A1A,inset 0 0 0 4px #3A86FF}.arcade-btn{border-width:1.5px}.value-box{border-width:1.5px}}
+  @media(prefers-reduced-motion:reduce){button{transition:none!important}}
+
+  /* Birthday skin: solid fills and crisp outlines remain clean after chroma keying. */
+  .topbar{border-width:3px;border-radius:2cqw;background:#FFBD00;box-shadow:inset 0 -5px #1A1A1A;}
+  .brand{color:#1A1A1A;}
+  .brand::before{border-color:#FF0054;box-shadow:none;}
+  .lang-btn{border:2px solid #1A1A1A;background:#1A1A1A;color:#fff;box-shadow:none;}
+  .lang-btn::after{background:#00F5D4;box-shadow:none;}
+  .game-card{padding-top:9cqw;border:3px solid #1A1A1A;border-radius:3cqw;background:#3A86FF;box-shadow:inset 0 2px #fff,inset 0 -6px #1A1A1A;}
+  .game-card::before{content:"";position:absolute;z-index:-1;top:2cqw;left:3cqw;right:3cqw;height:6cqw;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%2244%22%20viewBox%3D%220%200%20160%2044%22%3E%3Cpath%20d%3D%22M0%202H160%22%20stroke%3D%22%231A1A1A%22%20stroke-width%3D%222%22%2F%3E%3Crect%20x%3D%228%22%20y%3D%222%22%20width%3D%2223%22%20height%3D%2232%22%20rx%3D%223%22%20fill%3D%22%23FF0054%22%2F%3E%3Crect%20x%3D%2248%22%20y%3D%222%22%20width%3D%2223%22%20height%3D%2225%22%20rx%3D%223%22%20fill%3D%22%23FFBD00%22%2F%3E%3Crect%20x%3D%2288%22%20y%3D%222%22%20width%3D%2223%22%20height%3D%2232%22%20rx%3D%223%22%20fill%3D%22%2300F5D4%22%2F%3E%3Crect%20x%3D%22128%22%20y%3D%222%22%20width%3D%2223%22%20height%3D%2225%22%20rx%3D%223%22%20fill%3D%22%23FFBD00%22%2F%3E%3Cpath%20d%3D%22M13%207H26M53%207H66M93%207H106M133%207H146%22%20stroke%3D%22white%22%20stroke-opacity%3D%22.45%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E");background-size:23cqw 6cqw;background-repeat:repeat-x;border:0;transform:none;}
+  .game-card::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20720%20610%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20opacity%3D%22.28%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%22104%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%22675%22%20cy%3D%22525%22%20r%3D%227%22%2F%3E%3Ccircle%20cx%3D%22310%22%20cy%3D%2272%22%20r%3D%224%22%2F%3E%3Cpath%20d%3D%22M615%2090h14m-7-7v14M75%20373h12m-6-6v12M263%20537h12m-6-6v12M461%20100h10m-5-5v10%22%2F%3E%3Crect%20x%3D%22660%22%20y%3D%22300%22%20width%3D%2212%22%20height%3D%2212%22%20rx%3D%222%22%2F%3E%3Crect%20x%3D%2245%22%20y%3D%22477%22%20width%3D%229%22%20height%3D%229%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M330%20571l7-11%207%2011-7%2011zM185%2088l5-8%205%208-5%208z%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23FFBD00%22%20opacity%3D%22.6%22%3E%3Crect%20x%3D%2225%22%20y%3D%22200%22%20width%3D%226%22%20height%3D%2213%22%20rx%3D%222%22%20transform%3D%22rotate%28-20%2025%20200%29%22%2F%3E%3Crect%20x%3D%22688%22%20y%3D%22410%22%20width%3D%226%22%20height%3D%2213%22%20rx%3D%222%22%20transform%3D%22rotate%2825%20688%20410%29%22%2F%3E%3Ccircle%20cx%3D%22570%22%20cy%3D%22558%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22217%22%20cy%3D%22375%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%2300F5D4%22%20opacity%3D%22.5%22%3E%3Crect%20x%3D%22678%22%20y%3D%22151%22%20width%3D%226%22%20height%3D%2212%22%20rx%3D%222%22%20transform%3D%22rotate%2820%20678%20151%29%22%2F%3E%3Crect%20x%3D%22205%22%20y%3D%22560%22%20width%3D%226%22%20height%3D%2211%22%20rx%3D%222%22%20transform%3D%22rotate%28-20%20205%20560%29%22%2F%3E%3Ccircle%20cx%3D%22502%22%20cy%3D%2268%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%22325%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23FF0054%22%20opacity%3D%22.55%22%3E%3Crect%20x%3D%22389%22%20y%3D%2285%22%20width%3D%225%22%20height%3D%2210%22%20rx%3D%221%22%20transform%3D%22rotate%2825%20389%2085%29%22%2F%3E%3Crect%20x%3D%22501%22%20y%3D%22548%22%20width%3D%225%22%20height%3D%2211%22%20rx%3D%221%22%20transform%3D%22rotate%28-25%20501%20548%29%22%2F%3E%3Ccircle%20cx%3D%22686%22%20cy%3D%22261%22%20r%3D%223%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20opacity%3D%22.22%22%3E%3Cg%20transform%3D%22translate%2857%20535%29%22%3E%3Crect%20x%3D%220%22%20y%3D%2210%22%20width%3D%2234%22%20height%3D%2227%22%20rx%3D%223%22%2F%3E%3Cpath%20d%3D%22M-3%2010h40v9H-3zM17%2010v27M17%2010C-4%209%201-9%2011%200l6%2010c21-1%2016-19%206-10z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate%28620%20525%29%22%3E%3Cellipse%20cx%3D%220%22%20cy%3D%220%22%20rx%3D%2212%22%20ry%3D%2217%22%2F%3E%3Cpath%20d%3D%22M-3%2017l3-4%203%204zM0%2018c-12%2012%2012%2014%200%2028%22%2F%3E%3Cellipse%20cx%3D%2229%22%20cy%3D%2213%22%20rx%3D%2210%22%20ry%3D%2214%22%2F%3E%3Cpath%20d%3D%22M26%2027l3-4%203%204zM29%2029c-10%2010%209%2013%201%2024%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");background-size:100% 100%;background-repeat:no-repeat;}
+  .label{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;letter-spacing:.35cqw;text-shadow:0 2px #1A1A1A;}
+  .value-box{border-width:3px;border-radius:1.8cqw;box-shadow:0 4px #1A1A1A;text-shadow:none;background:#fff;color:#FF0054;}
+  .month-value{background:#FFBD00;color:#1A1A1A;}
+  .value-box:last-child{color:#3A86FF;}
+  .arcade-btn{border-width:3px;border-radius:1.5cqw;box-shadow:0 4px #1A1A1A,inset 0 2px #fff;}
+  .arcade-btn:nth-child(2) .arrow,.arcade-btn:nth-child(3) .arrow{border-color:#1A1A1A;filter:none;}
+  .arcade-btn:first-child .arrow{filter:none;}
+  .ok-btn{border-width:3px;border-radius:1.8cqw;background:#00F5D4;box-shadow:0 5px #1A1A1A,inset 0 2px #fff;}
+  .ok-btn:hover{filter:brightness(1.05);}
+  .result{color:#fff;font-weight:600;text-shadow:0 1px #1A1A1A;}
+  button:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+
+  .app[hidden]{display:none;}
+  .birthday-popup{width:min(90vmin,680px);max-width:none;max-height:none;aspect-ratio:1;margin:auto;padding:0;border:0;background:transparent;overflow:hidden;container-type:inline-size;}
+  .birthday-popup::backdrop{background:#00ff00;}
+  .birthday-content{height:100%;aspect-ratio:1;justify-content:center;align-items:center;gap:4cqw;padding:12cqw 6cqw 7cqw;text-align:center;}
+  .birthday-title{margin:0;color:#fff;font-family:'Baloo 2',system-ui,sans-serif;font-size:10cqw;font-weight:800;line-height:1.05;letter-spacing:.1cqw;text-shadow:0 .65cqw #1A1A1A;overflow-wrap:normal;}
+  .birthday-title::before{content:'';display:block;width:13cqw;height:13cqw;margin:0 auto 5cqw;background:#FFBD00;clip-path:polygon(50% 0,62% 32%,98% 35%,70% 57%,79% 94%,50% 74%,21% 94%,30% 57%,2% 35%,38% 32%);}
+  .birthday-subtitle{margin:0 0 3cqw;color:#fff;font-family:'Fredoka',system-ui,sans-serif;font-size:5cqw;font-weight:500;line-height:1.3;}
+  .birthday-content .ok-btn{height:13cqw;font-size:6.5cqw;width:100%;}
+</style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 class="brand">Game Date Selector</h1>
+      <button class="lang-btn" id="langBtn" type="button">English</button>
+    </header>
+
+    <main class="stage">
+      <section class="game-card" aria-label="Selector de fecha estilo videojuego">
+        <div class="labels">
+          <div class="label" id="labelDay">DÍA</div>
+          <div class="label" id="labelMonth">MES</div>
+          <div class="label" id="labelYear">AÑO</div>
+        </div>
+
+        <div class="controls top">
+          <button class="arcade-btn up" data-action="day+" aria-label="Subir día"><span class="arrow"></span></button>
+          <button class="arcade-btn up" data-action="month+" aria-label="Subir mes"><span class="arrow"></span></button>
+          <button class="arcade-btn up" data-action="year+" aria-label="Subir año"><span class="arrow"></span></button>
+        </div>
+
+        <div class="values">
+          <div class="value-box" id="dayValue">30</div>
+          <div class="value-box month-value" id="monthValue">ABRIL</div>
+          <div class="value-box" id="yearValue">2011</div>
+        </div>
+
+        <div class="controls bottom">
+          <button class="arcade-btn down" data-action="day-" aria-label="Bajar día"><span class="arrow"></span></button>
+          <button class="arcade-btn down" data-action="month-" aria-label="Bajar mes"><span class="arrow"></span></button>
+          <button class="arcade-btn down" data-action="year-" aria-label="Bajar año"><span class="arrow"></span></button>
+        </div>
+
+        <button class="ok-btn" id="okBtn" type="button">OK!</button>
+        <div class="result" id="result" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+
+  <dialog class="birthday-popup" id="birthdayPopup" aria-labelledby="birthdayTitle" aria-describedby="birthdaySubtitle">
+    <section class="game-card birthday-content">
+      <h2 class="birthday-title" id="birthdayTitle">FELIZ CUMPLEAÑOS!</h2>
+      <p class="birthday-subtitle" id="birthdaySubtitle">revisa tu saldo.</p>
+      <button class="ok-btn" id="birthdayOkBtn" type="button" autofocus>OK</button>
+    </section>
+  </dialog>
+
+<script>
+  const i18n = {
+    es: {
+      pageTitle: 'Selector Gamer Roblox',
+      brand: 'Game Date Selector',
+      langButton: 'English',
+      labels: { day: 'DÍA', month: 'MES', year: 'AÑO' },
+      months: ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'],
+      ok: 'OK!',
+      result: 'FECHA SELECCIONADA: {day} / {month} / {year}',
+      aria: {
+        card: 'Selector de fecha estilo videojuego',
+        incDay: 'Subir día', incMonth: 'Subir mes', incYear: 'Subir año',
+        decDay: 'Bajar día', decMonth: 'Bajar mes', decYear: 'Bajar año'
+      }
+    },
+    en: {
+      pageTitle: 'Gamer Date Selector',
+      brand: 'Game Date Selector',
+      langButton: 'Español',
+      labels: { day: 'DAY', month: 'MONTH', year: 'YEAR' },
+      months: ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'],
+      ok: 'OK!',
+      result: 'SELECTED DATE: {day} / {month} / {year}',
+      aria: {
+        card: 'Video game style date selector',
+        incDay: 'Increase day', incMonth: 'Increase month', incYear: 'Increase year',
+        decDay: 'Decrease day', decMonth: 'Decrease month', decYear: 'Decrease year'
+      }
+    }
+  };
+
+  let lang = 'es';
+  let day = 30, month = 3, year = 2011;
+
+  const htmlLang = document.documentElement;
+  const titleEl = document.querySelector('title');
+  const brandEl = document.querySelector('.brand');
+  const langBtn = document.getElementById('langBtn');
+  const card = document.querySelector('.game-card');
+  const labelDay = document.getElementById('labelDay');
+  const labelMonth = document.getElementById('labelMonth');
+  const labelYear = document.getElementById('labelYear');
+  const dayValue = document.getElementById('dayValue');
+  const monthValue = document.getElementById('monthValue');
+  const yearValue = document.getElementById('yearValue');
+  const okBtn = document.getElementById('okBtn');
+  const result = document.getElementById('result');
+
+  const actionAriaMap = {
+    'day+': 'incDay', 'month+': 'incMonth', 'year+': 'incYear',
+    'day-': 'decDay', 'month-': 'decMonth', 'year-': 'decYear'
+  };
+
+  function daysInMonth(y, m) {
+    return new Date(y, m + 1, 0).getDate();
+  }
+
+  function clampDay() {
+    const max = daysInMonth(year, month);
+    if (day > max) day = max;
+    if (day < 1) day = max;
+  }
+
+  function t() {
+    return i18n[lang];
+  }
+
+  function updateTexts() {
+    const dict = t();
+    htmlLang.lang = lang;
+    titleEl.textContent = dict.pageTitle;
+    brandEl.textContent = dict.brand;
+    langBtn.textContent = dict.langButton;
+    labelDay.textContent = dict.labels.day;
+    labelMonth.textContent = dict.labels.month;
+    labelYear.textContent = dict.labels.year;
+    okBtn.textContent = dict.ok;
+    card.setAttribute('aria-label', dict.aria.card);
+
+    document.querySelectorAll('[data-action]').forEach(btn => {
+      const key = actionAriaMap[btn.dataset.action];
+      btn.setAttribute('aria-label', dict.aria[key]);
+    });
+  }
+
+  function render() {
+    clampDay();
+    const dict = t();
+    dayValue.textContent = String(day).padStart(2, '0');
+    monthValue.textContent = dict.months[month];
+    yearValue.textContent = year;
+  }
+
+  function showResult() {
+    const dict = t();
+    result.textContent = dict.result
+      .replace('{day}', String(day).padStart(2, '0'))
+      .replace('{month}', dict.months[month])
+      .replace('{year}', year);
+  }
+
+  document.querySelectorAll('[data-action]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      if (action === 'day+') {
+        day++;
+        if (day > daysInMonth(year, month)) day = 1;
+      }
+      if (action === 'day-') {
+        day--;
+        if (day < 1) day = daysInMonth(year, month);
+      }
+      if (action === 'month+') month = (month + 1) % 12;
+      if (action === 'month-') month = (month + 11) % 12;
+      if (action === 'year+') year = Math.min(2099, year + 1);
+      if (action === 'year-') year = Math.max(1900, year - 1);
+      result.textContent = '';
+      render();
+    });
+  });
+
+  const birthdayPopup = document.getElementById('birthdayPopup');
+  const birthdayOkBtn = document.getElementById('birthdayOkBtn');
+
+  okBtn.addEventListener('click', () => {
+    document.getElementById('birthdayTitle').textContent = lang === 'es'
+      ? 'FELIZ CUMPLEAÑOS!' : 'HAPPY BIRTHDAY!';
+    document.getElementById('birthdaySubtitle').textContent = lang === 'es'
+      ? 'revisa tu saldo.' : 'check your balance.';
+    document.querySelector('.app').hidden = true;
+    birthdayPopup.showModal();
+  });
+
+  birthdayOkBtn.addEventListener('click', () => birthdayPopup.close());
+
+  langBtn.addEventListener('click', () => {
+    lang = lang === 'es' ? 'en' : 'es';
+    updateTexts();
+    render();
+    if (result.textContent.trim()) showResult();
+  });
+
+  updateTexts();
+  render();
+</script>
+</body>
+</html>
